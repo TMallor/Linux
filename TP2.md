@@ -196,3 +196,54 @@ papier_alu  tom
 # I. Programmes et processus
 
 1. Run then kill 
+
+```
+TERMINALE 1
+[tom@TP1 ~]$ sleep 10000
+```
+```
+TERMINALE 2
+[tom@TP1 /]$ ps aux | grep sleep
+tom         1334  0.0  0.0   5584  1020 pts/0    S+   16:35   0:00 sleep 10000
+tom         1330  0.0  0.1   6408  2300 pts/1    S+   16:31   0:00 grep --color=auto sleep
+```
+
+🌞 Terminez le processus sleep depuis le deuxième terminal
+
+```
+[tom@TP1 /]$ ps aux | grep sleep
+tom         1351  0.0  0.0   5584  1020 pts/0    S+   16:35   0:00 sleep 10000
+tom         1353  0.0  0.1   6408  2300 pts/1    S+   16:35   0:00 grep --color=auto sleep
+[tom@TP1 /]$ kill 1351
+[tom@TP1 /]$ ps aux | grep sleep
+tom         1355  0.0  0.1   6408  2300 pts/1    S+   16:35   0:00 grep --color=auto sleep
+[tom@TP1 /]$
+```
+
+2. Tâche de fond
+
+🌞 Lancer un nouveau processus sleep, mais en tâche de fond
+
+```
+[tom@TP1 ~]$ sleep 1000 &
+[1] 1314
+```
+
+🌞 Visualisez la commande en tâche de fond
+
+```
+ [tom@TP1 ~]$ ps aux | grep sleep &
+[2] 1316
+[tom@TP1 ~]$ tom         1314  0.0  0.0   5584  1016 pts/0    S    17:52   0:00 sleep 1000
+tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=auto sleep
+[tom@TP1 ~]$ jobs
+[1]+  Running                 sleep 1000 &
+```
+
+3. Find paths
+
+🌞 Trouver le chemin où est stocké le programme sleep
+
+```
+
+```
