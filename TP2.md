@@ -245,5 +245,189 @@ tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=
 🌞 Trouver le chemin où est stocké le programme sleep
 
 ```
+[tom@TP1 ~]$ which sleep
+/usr/bin/sleep
+[tom@TP1 ~]$ ls -al /usr/bin/ | grep sleep
+-rwxr-xr-x.  1 root root   36312 Apr 24  2023 sleep
+```
+
+🌞 Tant qu'on est à chercher des chemins : trouver les chemins vers tous les fichiers qui s'appellent .bashrc
+
+```
+[tom@TP1 ~]$ sudo find / -name "*.bashrc"
+[sudo] password for tom:
+/etc/skel/.bashrc
+/root/.bashrc
+/home/tom/.bashrc
+/home/papier_alu/marmotte/.bashrc
+```
+
+
+4. La variable PATH
+
+
+🌞 Vérifier que
+```
+[tom@TP1 ~]$ echo $PATH
+/home/tom/.local/bin:/home/tom/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+```
+```
+[tom@TP1 ~]$ which sleep
+/usr/bin/sleep
+[tom@TP1 ~]$ ls -al /usr/bin/sleep
+-rwxr-xr-x. 1 root root 36312 Apr 24  2023 /usr/bin/sleep
+```
+```
+[tom@TP1 ~]$ which ssh
+/usr/bin/ssh
+[tom@TP1 ~]$ ls -al /usr/bin/ssh
+-rwxr-xr-x. 1 root root 859480 Nov  2 20:34 /usr/bin/ssh
+```
+```
+[tom@TP1 ~]$ which ping
+/usr/bin/ping
+[tom@TP1 ~]$ ls -al /usr/bin/ping
+-rwxr-xr-x. 1 root root 78336 Oct 31 04:00 /usr/bin/ping
+```
+
+# II. Paquets
+
+🌞 Installer le paquet git
+```
+[tom@TP1 ~]$ sudo dnf install git
+Rocky Linux 9 - BaseOS                                                                                                      400  B/s | 4.1 kB     00:10
+Rocky Linux 9 - AppStream                                                                                                   444  B/s | 4.5 kB     00:10
+Rocky Linux 9 - Extras                                                                                                      279  B/s | 2.9 kB     00:10
+Dependencies resolved.
+============================================================================================================================================================
+ Package                                      Architecture                 Version                                    Repository                       Size
+============================================================================================================================================================
+Installing:
+ git
+.
+.
+.
+.
+.
+ Complete!
+```
+
+🌞 Utiliser une commande pour lancer git        
+
+```
+[tom@TP1 ~]$ which git
+/usr/bin/git
+[tom@TP1 ~]$ ls -al /usr/bin/git
+-rwxr-xr-x. 1 root root 3960424 May 22  2023 /usr/bin/git
+```
+
+🌞 Installer le paquet nginx
+
+```
+[tom@TP1 ~]$ sudo dnf install nginx
+.
+.
+.
+Installed:
+  nginx-1:1.20.1-14.el9_2.1.x86_64 nginx-core-1:1.20.1-14.el9_2.1.x86_64 nginx-filesystem-1:1.20.1-14.el9_2.1.noarch rocky-logos-httpd-90.14-2.el9.noarch
+
+Complete!
+
+```
+
+🌞 Déterminer
+
+```
+[tom@TP1 /]$ ls
+afs  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+[tom@TP1 /]$ cd var
+[tom@TP1 var]$ ls
+adm  cache  crash  db  empty  ftp  games  kerberos  lib  local  lock  log  mail  nis  opt  preserve  run  spool  tmp  yp
+[tom@TP1 var]$ cd log
+[tom@TP1 log]$ ls
+anaconda  btmp    cron             dnf.log      firewalld   kdump.log  maillog   nginx    README  spooler  tallylog
+audit     chrony  dnf.librepo.log  dnf.rpm.log  hawkey.log  lastlog    messages  private  secure  sssd     wtmp
+```
+
+```
+[tom@TP1 ~]$ which nginx
+/usr/sbin/nginx
+[tom@TP1 ~]$ ls -al /usr/sbin/nginx
+-rwxr-xr-x. 1 root root 1329000 Oct 16 20:00 /usr/sbin/nginx
+```
+
+🌞 Mais aussi déterminer...
+
+```
+[tom@TP1 ~]$ cat /etc/yum.repos.d/*.repo | grep https
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever$rltype*
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=HighAvailability-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=ResilientStorage-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=ResilientStorage-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=ResilientStorage-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=NFV-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=RT-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAP-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=SAPHANA-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=devel-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=devel-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=devel-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=plus-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=BaseOS-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=BaseOS-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=AppStream-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=AppStream-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=AppStream-$releasever-source$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=CRB-$releasever$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=CRB-$releasever-debug$rltype
+mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=CRB-$releasever-source$rltype
+```
+#   Partie 3 : Poupée russe
+
+🌞 Récupérer le fichier meow
+```
+ sudo dnf install wget
+Last metadata expiration check: 0:44:08 ago on Tue 23 Jan 2024 09:38:05 AM CET.
+Dependencies resolved.
+============================================================================================================================================================
+ Package                          Architecture                       Version                                    Repository                             Size
+============================================================================================================================================================
+Installing:
+ wget                             x86_64                             1.21.1-7.el9                               appstream                             769 k
+
+```
+
+```
+[tom@TP1 /]$ sudo wget https://gitlab.com/it4lik/b1-linux-2023/-/raw/master/tp/2/meow
+--2024-01-23 10:22:51--  https://gitlab.com/it4lik/b1-linux-2023/-/raw/master/tp/2/meow
+Resolving gitlab.com (gitlab.com)... 172.65.251.78, 2606:4700:90:0:f22e:fbec:5bed:a9b9
+Connecting to gitlab.com (gitlab.com)|172.65.251.78|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 18016947 (17M) [application/octet-stream]
+Saving to: ‘meow’
+
+meow                                   100%[============================================================================>]  17.18M  6.19MB/s    in 2.8s
+
+2024-01-23 10:22:59 (6.19 MB/s) - ‘meow’ saved [18016947/18016947]
+``` 
+
+🌞 Trouver le dossier dawa/
+
+```
 
 ```
