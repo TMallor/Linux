@@ -6,16 +6,16 @@
 🌞 Trouver le chemin vers le répertoire personnel de votre utilisateur
 
 ```
-[tom@TP1 ~]$ useradd toto
-[tom@TP1 ~]$ cd ../
-[tom@TP1 home]$ ls
+[tom@TP2 ~]$ useradd toto
+[tom@TP2 ~]$ cd ../
+[tom@TP2 home]$ ls
 tom  toto
 ```
 
 🌞 Trouver le chemin du fichier de logs SSH
 
 ```
-[tom@TP1 /]$ sudo cat /var/log/secure  | grep sshd
+[tom@TP2 /]$ sudo cat /var/log/secure  | grep sshd
 Dec 19 10:02:42 localhost sshd[798]: Server listening on 0.0.0.0 port 22.
 Dec 19 10:02:42 localhost sshd[798]: Server listening on :: port 22.
 Dec 19 10:08:20 localhost sshd[704]: Server listening on 0.0.0.0 port 22.
@@ -63,7 +63,7 @@ Jan 22 10:56:05 localhost sshd[1462]: pam_unix(sshd:session): session opened for
 🌞 Trouver le chemin du fichier de configuration du serveur SSH
 
 ```
-[tom@TP1 ssh]$ sudo cat ssh_config
+[tom@TP2 ssh]$ sudo cat ssh_config
 #       $OpenBSD: ssh_config,v 1.35 2020/07/17 03:43:42 dtucker Exp $
 
 # This is the ssh client system-wide configuration file.  See
@@ -127,10 +127,10 @@ Include /etc/ssh/ssh_config.d/*.conf
 🌞 Créer un nouvel utilisateur
 
 ```
-[tom@TP1 home]$ sudo useradd -m -d /home/papier_alu/marmotte -s /bin/bash marmotte
+[tom@TP2 home]$ sudo useradd -m -d /home/papier_alu/marmotte -s /bin/bash marmotte
 [sudo] password for tom:
 Creating mailbox file: File exists
-[tom@TP1 home]$ sudo passwd marmotte
+[tom@TP2 home]$ sudo passwd marmotte
 Changing password for user marmotte.
 New password:
 BAD PASSWORD: The password is shorter than 8 characters
@@ -140,12 +140,12 @@ New password:
 BAD PASSWORD: The password fails the dictionary check - it is based on a dictionary word
 Retype new password:
 passwd: all authentication tokens updated successfully.
-[tom@TP1 home]$ ls
+[tom@TP2 home]$ ls
 papier_alu  tom  
-[tom@TP1 home]$ cd papier_alu/
-[tom@TP1 papier_alu]$ ls
+[tom@TP2 home]$ cd papier_alu/
+[tom@TP2 papier_alu]$ ls
 marmotte
-[tom@TP1 papier_alu]$
+[tom@TP2 papier_alu]$
 ```
 
 2. Infos enregistrées par le système
@@ -153,14 +153,14 @@ marmotte
 🌞 Prouver que cet utilisateur a été créé
 
 ```
-[tom@TP1 home]$ sudo cat /etc/passwd | grep marmotte
+[tom@TP2 home]$ sudo cat /etc/passwd | grep marmotte
 marmotte:x:1001:1001::/home/papier_alu/marmotte:/bin/bash
 ```
 
 🌞 Déterminer le hash du password de l'utilisateur marmotte
 
 ```
-[tom@TP1 /]$ sudo cat /etc/shadow | grep marmotte
+[tom@TP2 /]$ sudo cat /etc/shadow | grep marmotte
 marmotte:$6$LpgK2VKGiGqgbIRN$kozxlYFUEVlVtlaDtg4Z.cqWLE2V2ZUGqSOKfPsV3WFj4ffNnHnT8WazYDeQ8KZFbbe7Y9DG3IdR5Dfz7mcAS.:19744:0:99999:7:::
 ```
 
@@ -169,7 +169,7 @@ marmotte:$6$LpgK2VKGiGqgbIRN$kozxlYFUEVlVtlaDtg4Z.cqWLE2V2ZUGqSOKfPsV3WFj4ffNnHn
 🌞 Tapez une commande pour vous déconnecter : fermer votre session utilisateur
 
 ```
-[tom@TP1 /]$ exit
+[tom@TP2 /]$ exit
 logout
 Connection to 10.1.1.10 closed.
 
@@ -181,14 +181,14 @@ Connection to 10.1.1.10 closed.
 PS C:\Users\tomma> ssh marmotte@10.1.1.10
 marmotte@10.1.1.10's password:
 Last login: Mon Jan 22 11:54:29 2024
-[marmotte@TP1 ~]$ cd ../
-[marmotte@TP1 papier_alu]$ cd ../
-[marmotte@TP1 home]$ ls
+[marmotte@TP2 ~]$ cd ../
+[marmotte@TP2 papier_alu]$ cd ../
+[marmotte@TP2 home]$ ls
 papier_alu  tom
-[marmotte@TP1 home]$ cd tom | ls
+[marmotte@TP2 home]$ cd tom | ls
 -bash: cd: tom: Permission denied
 papier_alu  tom
-[marmotte@TP1 home]$
+[marmotte@TP2 home]$
 ```
 
 # Partie 2 : Programmes et paquets
@@ -199,11 +199,11 @@ papier_alu  tom
 
 ```
 TERMINALE 1
-[tom@TP1 ~]$ sleep 10000
+[tom@TP2 ~]$ sleep 10000
 ```
 ```
 TERMINALE 2
-[tom@TP1 /]$ ps aux | grep sleep
+[tom@TP2 /]$ ps aux | grep sleep
 tom         1334  0.0  0.0   5584  1020 pts/0    S+   16:35   0:00 sleep 10000
 tom         1330  0.0  0.1   6408  2300 pts/1    S+   16:31   0:00 grep --color=auto sleep
 ```
@@ -211,13 +211,13 @@ tom         1330  0.0  0.1   6408  2300 pts/1    S+   16:31   0:00 grep --color=
 🌞 Terminez le processus sleep depuis le deuxième terminal
 
 ```
-[tom@TP1 /]$ ps aux | grep sleep
+[tom@TP2 /]$ ps aux | grep sleep
 tom         1351  0.0  0.0   5584  1020 pts/0    S+   16:35   0:00 sleep 10000
 tom         1353  0.0  0.1   6408  2300 pts/1    S+   16:35   0:00 grep --color=auto sleep
-[tom@TP1 /]$ kill 1351
-[tom@TP1 /]$ ps aux | grep sleep
+[tom@TP2 /]$ kill 1351
+[tom@TP2 /]$ ps aux | grep sleep
 tom         1355  0.0  0.1   6408  2300 pts/1    S+   16:35   0:00 grep --color=auto sleep
-[tom@TP1 /]$
+[tom@TP2 /]$
 ```
 
 2. Tâche de fond
@@ -225,18 +225,18 @@ tom         1355  0.0  0.1   6408  2300 pts/1    S+   16:35   0:00 grep --color=
 🌞 Lancer un nouveau processus sleep, mais en tâche de fond
 
 ```
-[tom@TP1 ~]$ sleep 1000 &
+[tom@TP2 ~]$ sleep 1000 &
 [1] 1314
 ```
 
 🌞 Visualisez la commande en tâche de fond
 
 ```
- [tom@TP1 ~]$ ps aux | grep sleep &
+ [tom@TP2 ~]$ ps aux | grep sleep &
 [2] 1316
-[tom@TP1 ~]$ tom         1314  0.0  0.0   5584  1016 pts/0    S    17:52   0:00 sleep 1000
+[tom@TP2 ~]$ tom         1314  0.0  0.0   5584  1016 pts/0    S    17:52   0:00 sleep 1000
 tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=auto sleep
-[tom@TP1 ~]$ jobs
+[tom@TP2 ~]$ jobs
 [1]+  Running                 sleep 1000 &
 ```
 
@@ -245,16 +245,16 @@ tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=
 🌞 Trouver le chemin où est stocké le programme sleep
 
 ```
-[tom@TP1 ~]$ which sleep
+[tom@TP2 ~]$ which sleep
 /usr/bin/sleep
-[tom@TP1 ~]$ ls -al /usr/bin/ | grep sleep
+[tom@TP2 ~]$ ls -al /usr/bin/ | grep sleep
 -rwxr-xr-x.  1 root root   36312 Apr 24  2023 sleep
 ```
 
 🌞 Tant qu'on est à chercher des chemins : trouver les chemins vers tous les fichiers qui s'appellent .bashrc
 
 ```
-[tom@TP1 ~]$ sudo find / -name "*.bashrc"
+[tom@TP2 ~]$ sudo find / -name "*.bashrc"
 [sudo] password for tom:
 /etc/skel/.bashrc
 /root/.bashrc
@@ -268,25 +268,25 @@ tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=
 
 🌞 Vérifier que
 ```
-[tom@TP1 ~]$ echo $PATH
+[tom@TP2 ~]$ echo $PATH
 /home/tom/.local/bin:/home/tom/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 ```
 ```
-[tom@TP1 ~]$ which sleep
+[tom@TP2 ~]$ which sleep
 /usr/bin/sleep
-[tom@TP1 ~]$ ls -al /usr/bin/sleep
+[tom@TP2 ~]$ ls -al /usr/bin/sleep
 -rwxr-xr-x. 1 root root 36312 Apr 24  2023 /usr/bin/sleep
 ```
 ```
-[tom@TP1 ~]$ which ssh
+[tom@TP2 ~]$ which ssh
 /usr/bin/ssh
-[tom@TP1 ~]$ ls -al /usr/bin/ssh
+[tom@TP2 ~]$ ls -al /usr/bin/ssh
 -rwxr-xr-x. 1 root root 859480 Nov  2 20:34 /usr/bin/ssh
 ```
 ```
-[tom@TP1 ~]$ which ping
+[tom@TP2 ~]$ which ping
 /usr/bin/ping
-[tom@TP1 ~]$ ls -al /usr/bin/ping
+[tom@TP2 ~]$ ls -al /usr/bin/ping
 -rwxr-xr-x. 1 root root 78336 Oct 31 04:00 /usr/bin/ping
 ```
 
@@ -294,7 +294,7 @@ tom         1316  0.0  0.1   6408  2296 pts/0    S    17:53   0:00 grep --color=
 
 🌞 Installer le paquet git
 ```
-[tom@TP1 ~]$ sudo dnf install git
+[tom@TP2 ~]$ sudo dnf install git
 Rocky Linux 9 - BaseOS                                                                                                      400  B/s | 4.1 kB     00:10
 Rocky Linux 9 - AppStream                                                                                                   444  B/s | 4.5 kB     00:10
 Rocky Linux 9 - Extras                                                                                                      279  B/s | 2.9 kB     00:10
@@ -315,16 +315,16 @@ Installing:
 🌞 Utiliser une commande pour lancer git        
 
 ```
-[tom@TP1 ~]$ which git
+[tom@TP2 ~]$ which git
 /usr/bin/git
-[tom@TP1 ~]$ ls -al /usr/bin/git
+[tom@TP2 ~]$ ls -al /usr/bin/git
 -rwxr-xr-x. 1 root root 3960424 May 22  2023 /usr/bin/git
 ```
 
 🌞 Installer le paquet nginx
 
 ```
-[tom@TP1 ~]$ sudo dnf install nginx
+[tom@TP2 ~]$ sudo dnf install nginx
 .
 .
 .
@@ -338,28 +338,28 @@ Complete!
 🌞 Déterminer
 
 ```
-[tom@TP1 /]$ ls
+[tom@TP2 /]$ ls
 afs  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-[tom@TP1 /]$ cd var
-[tom@TP1 var]$ ls
+[tom@TP2 /]$ cd var
+[tom@TP2 var]$ ls
 adm  cache  crash  db  empty  ftp  games  kerberos  lib  local  lock  log  mail  nis  opt  preserve  run  spool  tmp  yp
-[tom@TP1 var]$ cd log
-[tom@TP1 log]$ ls
+[tom@TP2 var]$ cd log
+[tom@TP2 log]$ ls
 anaconda  btmp    cron             dnf.log      firewalld   kdump.log  maillog   nginx    README  spooler  tallylog
 audit     chrony  dnf.librepo.log  dnf.rpm.log  hawkey.log  lastlog    messages  private  secure  sssd     wtmp
 ```
 
 ```
-[tom@TP1 ~]$ which nginx
+[tom@TP2 ~]$ which nginx
 /usr/sbin/nginx
-[tom@TP1 ~]$ ls -al /usr/sbin/nginx
+[tom@TP2 ~]$ ls -al /usr/sbin/nginx
 -rwxr-xr-x. 1 root root 1329000 Oct 16 20:00 /usr/sbin/nginx
 ```
 
 🌞 Mais aussi déterminer...
 
 ```
-[tom@TP1 ~]$ cat /etc/yum.repos.d/*.repo | grep https
+[tom@TP2 ~]$ cat /etc/yum.repos.d/*.repo | grep https
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever$rltype*
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=HighAvailability-$releasever-debug$rltype
 mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=HighAvailability-$releasever-source$rltype
@@ -413,7 +413,7 @@ Installing:
 ```
 
 ```
-[tom@TP1 /]$ sudo wget https://gitlab.com/it4lik/b1-linux-2023/-/raw/master/tp/2/meow
+[tom@TP2 /]$ sudo wget https://gitlab.com/it4lik/b1-linux-2023/-/raw/master/tp/2/meow
 --2024-01-23 10:22:51--  https://gitlab.com/it4lik/b1-linux-2023/-/raw/master/tp/2/meow
 Resolving gitlab.com (gitlab.com)... 172.65.251.78, 2606:4700:90:0:f22e:fbec:5bed:a9b9
 Connecting to gitlab.com (gitlab.com)|172.65.251.78|:443... connected.
@@ -429,5 +429,73 @@ meow                                   100%[====================================
 🌞 Trouver le dossier dawa/
 
 ```
+[tom@TP2]$ file meow
+meow: Zip archive data, at least v2.0 to extract
+```
+```
+[tom@TP2 ~]$ sudo mv meow meow.zip
 
+[tom@TP2]$ unzip meow.zip
+Archive:  meow.zip
+  inflating: meow
+```
+```
+[tom@TP2 ~]$ sudo mv meow meow.xz
+
+[tom@TP2]$ file meow.xz
+meow.xz: XZ compressed data
+
+[tom@TP2]$ xz -d -F xz meow.xz
+
+[tom@TP2]$ file meow
+meow: bzip2 compressed data, block size = 900k
+
+[tom@TP2]$ bzip2 -d meow
+bzip2: Can't guess original name for meow -- using meow.out
+
+[tom@TP2]$ file meow.out
+meow.out: RAR archive data, v5
+
+[tom@TP2]$ unrar e meow.out
+
+[tom@TP2]$ file meow
+meow: gzip compressed data, from Unix, original size modulo 2^32 145049600
+```
+
+🌞 Dans le dossier dawa/, déterminer le chemin vers
+
+le seul fichier de 15Mo
+```
+[tom@TP2 ~]$ find dawa/ -size 15M
+dawa/folder31/19/file39
+```
+
+le seul fichier qui ne contient que des 7
+```
+[tom@TP2 dawa]$ grep -r 7777777
+folder43/38/file41:77777777777
+```
+le seul fichier qui est nommé cookie
+
+```
+[tom@TP2 dawa]$ find -name cookie
+./folder14/25/cookie
+```
+
+le seul fichier caché (un fichier caché c'est juste un fichier dont le nom commence par un .)
+```
+[tom@TP2 dawa]$ find -name ".*"
+.
+./folder32/14/.hidden_file
+```
+
+le seul fichier qui date de 2014
+```
+[tom@TP2 dawa]$ find -newermt '2014-01-01 23:00' -not -newermt '2015-01-01 23:00'
+./folder36/40/file43
+```
+le seul fichier qui a 5 dossiers-parents
+```
+[tom@TP2 dawa]$ find -wholename "*/*/*/*/*/*/*"
+./folder37/45/23/43/54/file43
 ```
