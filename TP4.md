@@ -143,3 +143,15 @@ tom         1545  0.0  0.1   6408  2284 pts/0    S+   18:52   0:00 grep --color=
 LISTEN 0      511          0.0.0.0:80        0.0.0.0:*    ino:26751 sk:2 cgroup:/system.slice/nginx.service <->
 LISTEN 0      511             [::]:80           [::]:*    ino:26752 sk:4 cgroup:/system.slice/nginx.service v6only:1 <->
 ```
+
+### déterminer dans quel dossier se trouve la racine web
+
+```
+
+```
+
+### inspectez les fichiers de la racine web, et vérifier qu'ils sont bien accessibles en lecture par l'utilisateur qui lance le processus
+
+```
+
+```
