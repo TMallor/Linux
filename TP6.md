@@ -1524,5 +1524,12 @@ Complete!
 
 🌞 Exploration de la base de données
 ```
+MariaDB [(none)]> SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'nextcloud' AND table_name LIKE 'oc_%';
++----------+
+| COUNT(*) |
++----------+
+|      102 |
++----------+
+1 row in set (0.002 sec)
 
 ```
